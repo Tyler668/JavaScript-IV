@@ -37,17 +37,17 @@ class Student extends Person{
         this.favSubjects = attrs.favSubjects;
     }
         listsSubjects(){
-            for(i = 0; i< this.favSubjects.length; i++){
-                console.log(i + '. ' + this.favSubjects[i]);
+            for(let i = 0; i< this.favSubjects.length; i++){
+                console.log(`${i+1}` + '. ' + this.favSubjects[i]);
             }
     }
 
     PRAssignment(subject){
-        console.log(`${student.name} has submitted a PR for ${subject}`)
+        console.log(`${this.name} has submitted a PR for ${subject}`)
     }
 
     sprintChallenge(subject){
-        console.log(`${student.name} has has begun a Sprint Challenge on ${subject}`)
+        console.log(`${this.name} has has begun a Sprint Challenge on ${subject}`)
     }
 }
 
@@ -113,19 +113,41 @@ const fred = new Instructor({
 
   // Students ===
   const tyler = new Student({
-    name: 'tyler',
+    name: 'Tyler',
+    className: 'WEB22',
     location: 'Connecticut',
     age: 22,
     favLanguage: 'JavaScript',
     specialty: 'Creating super bugs',
-    catchPhrase: `Wot`
+    catchPhrase: `Wot`,
+    favSubjects:['Math','Anthropology','Philosophy','Physics']
   });
 
   const roger = new Student({
     name: 'Roger',
+    className: 'WEB22',
     location: 'Utah',
     age: 25,
     favLanguage: 'English',
     specialty: 'Wearing Glasses',
     catchPhrase: `My day was pretty good`
   });
+
+
+// Basic Speak Testing ===
+//   tyler.speak();
+//   roger.speak();
+//   sydney.speak();
+//   roman.speak();
+//   brit.speak();
+//   fred.speak();
+
+
+
+// Student Testing ===
+tyler.PRAssignment("Philosophy");
+tyler.listsSubjects();
+tyler.sprintChallenge("Basket Weaving");
+
+
+console.log(sydney);
