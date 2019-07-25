@@ -40,7 +40,92 @@ class Student extends Person{
             for(i = 0; i< this.favSubjects.length; i++){
                 console.log(i + '. ' + this.favSubjects[i]);
             }
-        
     }
 
+    PRAssignment(subject){
+        console.log(`${student.name} has submitted a PR for ${subject}`)
+    }
+
+    sprintChallenge(subject){
+        console.log(`${student.name} has has begun a Sprint Challenge on ${subject}`)
+    }
 }
+
+
+class ProjectManager extends Instructor{
+    constructor(attrs){
+        super(attrs);
+        this.gradClassName = attrs.gradClassName;
+        this.favInstructor = attrs.favInstructor;
+    }
+
+    standUp(channel){
+        console.log(`${this.name} announces to ${channel}, @channel standy times!​​​​​`);
+    }
+
+    debugsCode(studentObj, subject){
+        console.log(`${this.name} debugs ${studentObj.name}'s code on ${subject}`);
+
+    }
+}
+
+
+// People ===
+
+// Instructors ===
+const fred = new Instructor({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`
+  });
+
+  const brit = new Instructor({
+    name: 'Brit',
+    location: 'Ottowa',
+    age: 28,
+    favLanguage: 'JavaScript',
+    specialty: 'Back-end',
+    catchPhrase: `You can do it!`
+  });
+
+
+  // Project Managers ===
+  const sydney = new ProjectManager({
+    name: 'sydney',
+    location: 'Texas',
+    age: 23,
+    favLanguage: 'CSS/HTML',
+    specialty: 'Front-end',
+    catchPhrase: `How was your day!?`
+  });
+  
+  const roman = new ProjectManager({
+    name: 'Roman',
+    location: 'Somewhere',
+    age: 30,
+    favLanguage: 'C',
+    specialty: 'bash',
+    catchPhrase: `Let's get it!`
+  });
+
+  // Students ===
+  const tyler = new Student({
+    name: 'tyler',
+    location: 'Connecticut',
+    age: 22,
+    favLanguage: 'JavaScript',
+    specialty: 'Creating super bugs',
+    catchPhrase: `Wot`
+  });
+
+  const roger = new Student({
+    name: 'Roger',
+    location: 'Utah',
+    age: 25,
+    favLanguage: 'English',
+    specialty: 'Wearing Glasses',
+    catchPhrase: `My day was pretty good`
+  });
