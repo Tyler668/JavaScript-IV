@@ -1,25 +1,10 @@
-/* 
+ 
 
-Prototype Refactor
+// Prototype Refactor
 
-1. Copy and paste your code or the solution from yesterday
 
-2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
 
-*/
-
-/*
-  === GameObject ===
-  * createdAt
-  * name
-  * dimensions (These represent the character's size in the video game)
-  * destroy() // prototype method that returns: `${this.name} was removed from the game.`
-*/
-
-// GameObject.prototype.destroy = function () {
-//     return `${this.name} was removed from the game!`;
-//   };
-
+  // === GameObject Class ===
 class GameObject {
     constructor(charAttrs) {
         this.createdAt = charAttrs.createdAt,
@@ -31,18 +16,8 @@ class GameObject {
     }
 };
 
-/*
-  === CharacterStats ===
-  * healthPoints
-  * takeDamage() // prototype method -> returns the string '<object name> took damage.'
-  * should inherit destroy() from GameObject's prototype
-*/
 
-// CharacterStats.prototype = Object.create(GameObject.prototype);
-
-// CharacterStats.prototype.takeDamage = function () {
-//     return `${this.name} took damage!`;
-// };
+ // === CharacterStats Class ===
 
 class CharacterStats extends GameObject{
     constructor(charAttrs) {
@@ -55,29 +30,8 @@ class CharacterStats extends GameObject{
     }
 };
 
-/*
-  === Humanoid (Having an appearance or character resembling that of a human.) ===
-  * team
-  * weapons
-  * language
-  * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  * should inherit destroy() from GameObject through CharacterStats
-  * should inherit takeDamage() from CharacterStats
-*/
 
-
-// Humanoid.prototype = Object.create(CharacterStats.prototype);
-
-// Humanoid.prototype.greet = function () {
-//     return `${this.name} offers a greeting in ${this.language}!`;
-// };
-
-// Humanoid.prototype.attack = function (target) {
-//     const atkDamage = damageRoll(6);
-//     target.healthPoints = target.healthPoints - atkDamage;
-//     return `${this.name} attacked ${target.name}, dealing ${atkDamage} damage!`;
-// };
-
+ // === Humanoid Class ===
 
 //Calculates random damage for the attack 1-5 ----------|
 function damageRoll(max) {
@@ -105,7 +59,7 @@ class Humanoid extends CharacterStats{
 
 };
 
-// Hero.prototype = Object.create(Humanoid.prototype);
+// Hero and Villain Classes ===
 
 class Hero extends Humanoid {
     constructor(charAttrs){
@@ -114,22 +68,14 @@ class Hero extends Humanoid {
 
 }
 
-
-// Villain.prototype = Object.create(Humanoid.prototype);
-
 class Villain extends Humanoid {
     constructor(charAttrs){
         super(charAttrs)
     }
 };
-/*
-  * Inheritance chain: GameObject -> CharacterStats -> Humanoid
-  * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
-  * Instances of CharacterStats should have all of the same properties as GameObject.
-*/
 
-// Test you work by un-commenting these 3 objects and the list of console logs below:
 
+// Test Objects ===
 
 const mage = new Humanoid({
     createdAt: new Date(),
@@ -215,6 +161,7 @@ const barbarian = new Villain({
     language: 'Common',
 });
 
+// End Test Objects ===
 
 
 console.log(mage.createdAt); // Today's date
@@ -229,7 +176,7 @@ console.log(mage.takeDamage()); // Bruce took damage.
 console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
-//The fight:
+// The Fight! ===
 while (wizard.healthPoints > 0 && barbarian.healthPoints > 0) {
 
     console.log(wizard.attack(barbarian));
