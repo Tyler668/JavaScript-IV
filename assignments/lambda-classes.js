@@ -18,8 +18,8 @@ class Instructor extends Person{
     constructor(attrs){
         super(attrs);
         this.specialty = attrs.specialty;
-        this.favLaguage = attrs.favLaguage;
-        this.catchPhrase = attrs.catchPhrase
+        this.favLanguage = attrs.favLanguage;
+        this.catchPhrase = attrs.catchPhrase;
     }
     demo(subject){
         console.log(`Today, we will be learning about ${subject}`);
@@ -94,7 +94,9 @@ const fred = new Instructor({
 
   // Project Managers ===
   const sydney = new ProjectManager({
-    name: 'sydney',
+    name: 'Sydney',
+    gradClassName: 'WEB10',
+    favInstructor: 'Brit',
     location: 'Texas',
     age: 23,
     favLanguage: 'CSS/HTML',
@@ -104,6 +106,8 @@ const fred = new Instructor({
   
   const roman = new ProjectManager({
     name: 'Roman',
+    gradClassName: 'WEB10',
+    favInstructor: 'Brit',
     location: 'Somewhere',
     age: 30,
     favLanguage: 'C',
@@ -115,6 +119,7 @@ const fred = new Instructor({
   const tyler = new Student({
     name: 'Tyler',
     className: 'WEB22',
+    previousBackground: 'Nihilist',
     location: 'Connecticut',
     age: 22,
     favLanguage: 'JavaScript',
@@ -129,6 +134,7 @@ const fred = new Instructor({
     location: 'Utah',
     age: 25,
     favLanguage: 'English',
+    previousBackground: 'Glasses wearer',
     specialty: 'Wearing Glasses',
     catchPhrase: `My day was pretty good`
   });
@@ -145,9 +151,21 @@ const fred = new Instructor({
 
 
 // Student Testing ===
+console.log(tyler);
 tyler.PRAssignment("Philosophy");
 tyler.listsSubjects();
 tyler.sprintChallenge("Basket Weaving");
 
-
+// Project Manager Testing ===
 console.log(sydney);
+console.log(roman);
+
+sydney.standUp("Web22");
+sydney.debugsCode(tyler,"Pseudo classical instantiation");
+
+//Instructor Testing === 
+console.log(brit);
+console.log(fred);
+
+brit.demo('computery stuff');
+
