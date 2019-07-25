@@ -38,18 +38,21 @@ class GameObject {
   * should inherit destroy() from GameObject's prototype
 */
 
-CharacterStats.prototype = Object.create(GameObject.prototype);
+// CharacterStats.prototype = Object.create(GameObject.prototype);
 
-CharacterStats.prototype.takeDamage = function () {
-    return `${this.name} took damage!`;
-};
+// CharacterStats.prototype.takeDamage = function () {
+//     return `${this.name} took damage!`;
+// };
 
-class CharacterStats {
+class CharacterStats extends GameObject{
     constructor(charAttrs) {
         super(charAttrs);
-        this.healthPoints = char.healthPoints
+        this.healthPoints = charAttrs.healthPoints;
     }
 
+    takeDamage(){
+        return `${this.name} took damage!`;
+    }
 };
 
 /*
@@ -63,17 +66,17 @@ class CharacterStats {
 */
 
 
-Humanoid.prototype = Object.create(CharacterStats.prototype);
+// Humanoid.prototype = Object.create(CharacterStats.prototype);
 
-Humanoid.prototype.greet = function () {
-    return `${this.name} offers a greeting in ${this.language}!`;
-};
+// Humanoid.prototype.greet = function () {
+//     return `${this.name} offers a greeting in ${this.language}!`;
+// };
 
-Humanoid.prototype.attack = function (target) {
-    const atkDamage = damageRoll(6);
-    target.healthPoints = target.healthPoints - atkDamage;
-    return `${this.name} attacked ${target.name}, dealing ${atkDamage} damage!`;
-};
+// Humanoid.prototype.attack = function (target) {
+//     const atkDamage = damageRoll(6);
+//     target.healthPoints = target.healthPoints - atkDamage;
+//     return `${this.name} attacked ${target.name}, dealing ${atkDamage} damage!`;
+// };
 
 
 //Calculates random damage for the attack 1-5 ----------|
@@ -82,23 +85,42 @@ function damageRoll(max) {
 }
 //------------------------------------------------------|
 
-function Humanoid(char) {
-    this.team = char.team,
-        this.weapons = char.weapons,
-        this.language = char.language,
-        CharacterStats.call(this, char);
+class Humanoid extends CharacterStats{
+    constructor(charAttrs){
+        super(charAttrs);
+        this.team = charAttrs.team,
+        this.weapons = charAttrs.weapons,
+        this.language = charAttrs.language
+    }
+
+    greet() {
+        return `${this.name} offers a greeting in ${this.language}!`;
+    }
+
+    attack(target) {
+        const atkDamage = damageRoll(6);
+        target.healthPoints = target.healthPoints - atkDamage;
+        return `${this.name} attacked ${target.name}, dealing ${atkDamage} damage!`;
+    }
+
 };
 
-Hero.prototype = Object.create(Humanoid.prototype);
+// Hero.prototype = Object.create(Humanoid.prototype);
 
-function Hero(char) {
-    Humanoid.call(this, char);
-};
+class Hero extends Humanoid {
+    constructor(charAttrs){
+        super(charAttrs)
+    }
+
+}
 
 
-Villain.prototype = Object.create(Humanoid.prototype);
-function Villain(char) {
-    Humanoid.call(this, char);
+// Villain.prototype = Object.create(Humanoid.prototype);
+
+class Villain extends Humanoid {
+    constructor(charAttrs){
+        super(charAttrs)
+    }
 };
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
